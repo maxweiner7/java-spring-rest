@@ -2,14 +2,16 @@ package com.estudo.java.rest.api.controller;
 
 import com.estudo.java.rest.api.model.UsuarioModel;
 import com.estudo.java.rest.api.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/usuarios")
+@RequestMapping
 public class UsuarioController {
 
     private final UsuarioRepository repository;
@@ -25,14 +27,14 @@ public class UsuarioController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping
+    @GetMapping(path = "/api/usuario/todos")
     public List<UsuarioModel> findAll() {
-
-        return (List<UsuarioModel>) repository.findAll();
+        return repository.findAll();
     }
 
     @PostMapping(path = "/api/usuario/salvar")
-    public UsuarioModel salvar(@RequestBody UsuarioModel usuario) {
+    public UsuarioModel salvar(@Valid @RequestBody UsuarioModel usuario) {
+
         return repository.save(usuario);
 
     }

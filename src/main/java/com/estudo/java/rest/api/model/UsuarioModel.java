@@ -1,8 +1,11 @@
 package com.estudo.java.rest.api.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
 
 @Entity
+
 public class UsuarioModel {
 
     @Id
@@ -10,6 +13,7 @@ public class UsuarioModel {
     public Integer codigo;
 
     @Column(nullable = false, length = 50)
+    @Size(min = 3, max = 30, message = "Mensagem de erro")
     public String nome;
 
     @Column(nullable = false, length = 10)
@@ -50,3 +54,4 @@ public class UsuarioModel {
         this.senha = senha;
     }
 }
+
