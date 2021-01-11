@@ -13,7 +13,7 @@ public class UsuarioModel {
     public Integer codigo;
 
     @Column(nullable = false, length = 50)
-    @Size(min = 3, max = 30, message = "Mensagem de erro")
+    @Size(min = 3, max = 30)
     public String nome;
 
     @Column(nullable = false, length = 10)
